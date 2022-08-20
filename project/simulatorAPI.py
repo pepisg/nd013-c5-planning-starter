@@ -61,6 +61,7 @@ import weakref
 import asyncio
 import json
 from websocket import create_connection
+import traceback
 
 way_points = []
 v_points = []
@@ -848,9 +849,10 @@ def game_loop(args):
             world.render(display)
             pygame.display.flip()
 
-    finally:
+    except Exception as e:
 
         print("key board interrupt, good bye")
+        print(traceback.format_exc())
         if world is not None:
             world.destroy()
 
